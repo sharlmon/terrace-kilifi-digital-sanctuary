@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
-import mangroveImg from "@/assets/mangrove.jpg";
-import weaveImg from "@/assets/texture-weave.jpg";
-import artImg from "@/assets/art-space.jpg";
+import aboutHeroImg from "@/assets/about-hero.webp";
+import communityImg from "@/assets/community-terrace.webp";
+import interiorImg from "@/assets/art-space-interior.webp";
+import teamDeno from "@/assets/team-deno.webp";
+import teamAmara from "@/assets/team-amara.webp";
+import partnerImg from "@/assets/testimonial-1.webp";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -15,16 +18,16 @@ export const Route = createFileRoute("/about")({
           "An artist-led, independent arts space and residency on Kilifi Creek, Kenya. Our story, our team, our place.",
       },
       { property: "og:title", content: "About — The Terrace Kilifi" },
-      { property: "og:image", content: mangroveImg },
+      { property: "og:image", content: aboutHeroImg },
     ],
   }),
   component: AboutPage,
 });
 
 const TEAM = [
-  { name: "Artistic Direction", role: "Curatorial vision and programming", img: artImg },
-  { name: "Residency Team", role: "Hosting, mentorship and care", img: weaveImg },
-  { name: "Community Partners", role: "Neighbours, collaborators, friends", img: mangroveImg },
+  { name: "Deno", role: "Founder & Creative Lead", img: teamDeno },
+  { name: "Amara", role: "Resident Curator", img: teamAmara },
+  { name: "Collaborators", role: "Artists, neighbors and friends", img: partnerImg },
 ];
 
 const VALUES = [
@@ -41,7 +44,7 @@ function AboutPage() {
         eyebrow="About"
         title="An artist-led house on Kilifi Creek."
         description="The Terrace was founded as an independent platform for art, community and exchange — created by artists, for artists, in the heart of coastal Kenya."
-        image={mangroveImg}
+        image={aboutHeroImg}
       />
 
       <section className="container-editorial py-24 md:py-36 grid md:grid-cols-12 gap-12">

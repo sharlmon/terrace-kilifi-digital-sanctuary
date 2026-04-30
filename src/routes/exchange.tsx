@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
-import exchangeImg from "@/assets/exchange.jpg";
+import exchangeImg from "@/assets/exchange.webp";
 
 export const Route = createFileRoute("/exchange")({
   head: () => ({

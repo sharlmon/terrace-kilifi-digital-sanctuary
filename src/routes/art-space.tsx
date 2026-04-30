@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
-import artImg from "@/assets/art-space.jpg";
-import weaveImg from "@/assets/texture-weave.jpg";
+import artImg from "@/assets/art-space.webp";
+import collabImg from "@/assets/art-space-interior.webp";
 
 export const Route = createFileRoute("/art-space")({
   head: () => ({
@@ -82,7 +82,7 @@ function ArtSpacePage() {
       <section className="container-editorial py-28 md:py-36 grid md:grid-cols-12 gap-10 md:gap-16 items-center">
         <Reveal className="md:col-span-6">
           <div className="aspect-[4/5] overflow-hidden rounded-sm">
-            <img src={weaveImg} alt="" loading="lazy" className="h-full w-full object-cover" />
+            <img src={collabImg} alt="Artists in collaborative conversation at The Terrace" loading="lazy" className="h-full w-full object-cover" />
           </div>
         </Reveal>
         <Reveal delay={150} className="md:col-span-6">

@@ -1,12 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Quote } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
-import heroImg from "@/assets/hero-creek.jpg";
-import artImg from "@/assets/art-space.jpg";
-import residencyImg from "@/assets/residency.jpg";
-import exchangeImg from "@/assets/exchange.jpg";
-import weaveImg from "@/assets/texture-weave.jpg";
-import mangroveImg from "@/assets/mangrove.jpg";
+import heroImg from "@/assets/hero-main.webp";
+import ctaImg from "@/assets/hero-building.webp";
+import artImg from "@/assets/pillar-art-space.webp";
+import residencyImg from "@/assets/pillar-residency.webp";
+import exchangeImg from "@/assets/pillar-exchange.webp";
+import weaveImg from "@/assets/texture-weave.webp";
+import mangroveImg from "@/assets/mangrove.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,6 +20,7 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:title", content: "The Terrace Kilifi" },
       { property: "og:image", content: heroImg },
+      { property: "og:image:alt", content: "The Terrace Kilifi — creekside arts sanctuary" },
     ],
   }),
   component: HomePage,
@@ -76,7 +78,7 @@ function HomePage() {
       <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
         <img
           src={heroImg}
-          alt="Mangroves at sunrise on Kilifi Creek"
+          alt="The Terrace Kilifi — circular pool nestled in coastal forest, Kilifi Creek"
           className="absolute inset-0 h-full w-full object-cover ken-burns"
           fetchPriority="high"
         />
@@ -273,7 +275,7 @@ function HomePage() {
 
       {/* CTA */}
       <section className="relative py-32 md:py-44 overflow-hidden">
-        <img src={heroImg} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+        <img src={ctaImg} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-charcoal/65" />
         <div className="relative container-editorial text-center text-ivory">
           <Reveal>

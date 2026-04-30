@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { Check } from "lucide-react";
-import residencyImg from "@/assets/residency.jpg";
-import mangroveImg from "@/assets/mangrove.jpg";
+import residencyImg from "@/assets/pillar-residency.webp";
+import emergingImg from "@/assets/residency-emerging.webp";
 
 export const Route = createFileRoute("/residency")({
   head: () => ({
@@ -70,7 +70,7 @@ function ResidencyPage() {
         <div className="container-editorial grid md:grid-cols-12 gap-10 md:gap-16 items-start">
           <Reveal className="md:col-span-5 md:sticky md:top-32">
             <div className="aspect-[4/5] overflow-hidden rounded-sm">
-              <img src={residencyImg} alt="Creekside villa at twilight" loading="lazy" className="h-full w-full object-cover" />
+              <img src={residencyImg} alt="Circular plunge pool in lush coastal forest, Kilifi" loading="lazy" className="h-full w-full object-cover" />
             </div>
           </Reveal>
           <Reveal delay={150} className="md:col-span-7">
@@ -132,7 +132,7 @@ function ResidencyPage() {
           </Reveal>
           <Reveal delay={150} className="md:col-span-5 order-1 md:order-2 md:sticky md:top-32">
             <div className="aspect-[4/5] overflow-hidden rounded-sm">
-              <img src={mangroveImg} alt="Mangroves at dawn" loading="lazy" className="h-full w-full object-cover" />
+              <img src={emergingImg} alt="Artists at rest on rope swings beneath ancient tree, The Terrace" loading="lazy" className="h-full w-full object-cover" />
             </div>
           </Reveal>
         </div>
