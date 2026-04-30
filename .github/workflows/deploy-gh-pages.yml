@@ -27,7 +27,10 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: NITRO_PRESET=static npm run build
+        run: npm run build
+
+      - name: Fix for GitHub Pages
+        run: node scripts/fix-gh-pages.mjs
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -35,7 +38,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './.output/public'
+          path: './dist/client'
 
       - name: Deploy to GitHub Pages
         id: deployment
