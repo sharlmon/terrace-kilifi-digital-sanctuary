@@ -3,6 +3,22 @@ import { Header } from "../components/site/Header";
 import { Footer } from "../components/site/Footer";
 
 import appCss from "../styles.css?url";
+import { SITE } from "@/lib/site";
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.name,
+  url: SITE.url,
+  email: SITE.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: SITE.address.street,
+    addressLocality: SITE.address.locality,
+    addressCountry: SITE.address.country,
+  },
+  sameAs: [SITE.social.instagram, SITE.social.facebook],
+};
 
 function NotFoundComponent() {
   return (
@@ -55,6 +71,12 @@ export const Route = createRootRoute({
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(organizationSchema),
       },
     ],
   }),

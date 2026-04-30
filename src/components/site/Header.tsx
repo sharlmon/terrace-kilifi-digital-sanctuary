@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Instagram, Facebook, Mail, MapPin } from "lucide-react";
+import { SITE } from "@/lib/site";
 
 const NAV = [
   { to: "/art-space", label: "Art Space" },
@@ -68,7 +69,7 @@ export function Header() {
 
       {open && (
         <div className="md:hidden border-t border-border/60 bg-background/95 backdrop-blur-xl">
-          <div className="container-editorial py-6 flex flex-col gap-5">
+          <div className="container-editorial py-8 flex flex-col gap-5">
             {NAV.map((item) => (
               <Link
                 key={item.to}
@@ -79,6 +80,26 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
+
+            <div className="mt-4 pt-6 border-t border-border/60 space-y-3 text-sm text-foreground/75">
+              <a href={`mailto:${SITE.email}`} className="flex items-center gap-3 hover:text-foreground transition-colors">
+                <Mail size={15} className="text-primary" /> {SITE.email}
+              </a>
+              <p className="flex items-start gap-3">
+                <MapPin size={15} className="text-primary mt-0.5 shrink-0" />
+                <span>{SITE.address.street}, {SITE.address.locality}</span>
+              </p>
+              <div className="flex gap-3 pt-2">
+                <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+                  className="p-2.5 rounded-full border border-border hover:bg-foreground hover:text-background transition-all">
+                  <Instagram size={15} />
+                </a>
+                <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+                  className="p-2.5 rounded-full border border-border hover:bg-foreground hover:text-background transition-all">
+                  <Facebook size={15} />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       )}
