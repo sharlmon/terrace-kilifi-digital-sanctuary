@@ -11,13 +11,20 @@ if (!fs.existsSync(distDir)) {
 
 // Find main JS file and CSS file
 const files = fs.readdirSync(assetsDir);
-const mainJs = files.find(f => f.startsWith('index-') && f.endsWith('.js'));
+const jsFiles = files.filter(f => f.startsWith('index-') && f.endsWith('.js'))
+  .map(f => ({ name: f, size: fs.statSync(path.join(assetsDir, f)).size }))
+  .sort((a, b) => b.size - a.size);
+
+const mainJs = jsFiles.length > 0 ? jsFiles[0].name : null;
 const mainCss = files.find(f => f.startsWith('styles-') && f.endsWith('.css'));
 
 if (!mainJs) {
   console.error('Main JS file not found');
   process.exit(1);
 }
+
+console.log(`Using main JS: ${mainJs}`);
+if (mainCss) console.log(`Using main CSS: ${mainCss}`);
 
 const basePath = '/terrace-kilifi-digital-sanctuary/';
 
@@ -44,5 +51,6 @@ const html = `<!DOCTYPE html>
 
 fs.writeFileSync(path.join(distDir, 'index.html'), html);
 fs.writeFileSync(path.join(distDir, '404.html'), html);
+fs.writeFileSync(path.join(distDir, '.nojekyll'), '');
 
-console.log('Generated index.html and 404.html in dist/client');
+console.log('Generated index.html, 404.html and .nojekyll in dist/client');
