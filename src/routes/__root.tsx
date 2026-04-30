@@ -1,4 +1,6 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Header } from "../components/site/Header";
+import { Footer } from "../components/site/Footer";
 
 import appCss from "../styles.css?url";
 
@@ -6,17 +8,18 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+        <p className="eyebrow">Lost in the mangroves</p>
+        <h1 className="mt-4 font-serif text-7xl text-foreground">404</h1>
+        <h2 className="mt-4 font-serif text-2xl text-foreground">Page not found</h2>
+        <p className="mt-3 text-sm text-muted-foreground">
+          The path you're following doesn't exist. Let's get you back to the creek.
         </p>
-        <div className="mt-6">
+        <div className="mt-8">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex items-center rounded-full bg-foreground px-6 py-3 text-xs uppercase tracking-[0.18em] text-background hover:bg-primary transition-colors"
           >
-            Go home
+            Return home
           </Link>
         </div>
       </div>
@@ -29,19 +32,29 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "The Terrace Kilifi — Artist-led Arts Space & Residency" },
+      {
+        name: "description",
+        content:
+          "An independent, artist-led arts space and residency on Kilifi Creek, Kenya. Exhibitions, residencies and cross-cultural exchange on the East African coast.",
+      },
+      { name: "author", content: "The Terrace Kilifi" },
+      { property: "og:title", content: "The Terrace Kilifi" },
+      {
+        property: "og:description",
+        content:
+          "An artist-led independent arts space and residency on Kilifi Creek, Kenya.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
       },
     ],
   }),
@@ -65,5 +78,13 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <>
+      <Header />
+      <main className="min-h-screen">
+        <Outlet />
+      </main>
+      <Footer />
+    </>
+  );
 }

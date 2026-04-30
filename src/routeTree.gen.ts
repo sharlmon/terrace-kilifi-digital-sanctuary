@@ -9,8 +9,38 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResidencyRouteImport } from './routes/residency'
+import { Route as ExchangeRouteImport } from './routes/exchange'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ArtSpaceRouteImport } from './routes/art-space'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ResidencyRoute = ResidencyRouteImport.update({
+  id: '/residency',
+  path: '/residency',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExchangeRoute = ExchangeRouteImport.update({
+  id: '/exchange',
+  path: '/exchange',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArtSpaceRoute = ArtSpaceRouteImport.update({
+  id: '/art-space',
+  path: '/art-space',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +49,96 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/art-space': typeof ArtSpaceRoute
+  '/contact': typeof ContactRoute
+  '/exchange': typeof ExchangeRoute
+  '/residency': typeof ResidencyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/art-space': typeof ArtSpaceRoute
+  '/contact': typeof ContactRoute
+  '/exchange': typeof ExchangeRoute
+  '/residency': typeof ResidencyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/art-space': typeof ArtSpaceRoute
+  '/contact': typeof ContactRoute
+  '/exchange': typeof ExchangeRoute
+  '/residency': typeof ResidencyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/art-space'
+    | '/contact'
+    | '/exchange'
+    | '/residency'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/about' | '/art-space' | '/contact' | '/exchange' | '/residency'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/art-space'
+    | '/contact'
+    | '/exchange'
+    | '/residency'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ArtSpaceRoute: typeof ArtSpaceRoute
+  ContactRoute: typeof ContactRoute
+  ExchangeRoute: typeof ExchangeRoute
+  ResidencyRoute: typeof ResidencyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/residency': {
+      id: '/residency'
+      path: '/residency'
+      fullPath: '/residency'
+      preLoaderRoute: typeof ResidencyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exchange': {
+      id: '/exchange'
+      path: '/exchange'
+      fullPath: '/exchange'
+      preLoaderRoute: typeof ExchangeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/art-space': {
+      id: '/art-space'
+      path: '/art-space'
+      fullPath: '/art-space'
+      preLoaderRoute: typeof ArtSpaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +151,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ArtSpaceRoute: ArtSpaceRoute,
+  ContactRoute: ContactRoute,
+  ExchangeRoute: ExchangeRoute,
+  ResidencyRoute: ResidencyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
