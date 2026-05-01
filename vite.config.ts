@@ -8,6 +8,8 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   vite: {
-    base: "/terrace-kilifi-digital-sanctuary/",
+    // GitHub Pages needs the repo name as base; Vercel needs "/".
+    // Set VITE_BASE_PATH in the GH Actions workflow; leave unset for Vercel.
+    base: process.env.VITE_BASE_PATH ?? "/",
   },
 });

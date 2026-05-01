@@ -57,7 +57,8 @@ function DefaultErrorComponent({ error, reset }: { error: Error; reset: () => vo
 export const getRouter = () => {
   const router = createRouter({
     routeTree,
-    basepath: "/terrace-kilifi-digital-sanctuary/",
+    // Must match vite.config.ts `base`. Defaults to "/" for Vercel.
+    basepath: import.meta.env.VITE_BASE_PATH ?? "/",
     context: {},
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
