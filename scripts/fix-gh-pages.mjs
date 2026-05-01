@@ -26,27 +26,35 @@ if (!mainJs) {
 console.log(`Using main JS: ${mainJs}`);
 if (mainCss) console.log(`Using main CSS: ${mainCss}`);
 
-const basePath = '/terrace-kilifi-digital-sanctuary/';
+// Use VITE_BASE_PATH env var — matches vite.config.ts and router.tsx.
+// GitHub Pages workflow sets this to /terrace-kilifi-digital-sanctuary/
+// Vercel leaves it unset, so we default to /
+const basePath = process.env.VITE_BASE_PATH ?? '/';
+console.log(`Using base path: ${basePath}`);
+
+// For Vercel (basePath = "/"), asset paths are absolute: /assets/...
+// For GitHub Pages (basePath = "/repo/"), a <base> tag handles relative paths.
+const assetPrefix = basePath === '/' ? '/assets/' : 'assets/';
+const baseTag = basePath !== '/' ? `\n    <base href="${basePath}">` : '';
 
 const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/terrace-kilifi-digital-sanctuary/">
-    <title>The Terrace Kilifi — Artist-led Arts Space & Residency</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">${baseTag}
+    <title>The Terrace Kilifi — Artist-led Arts Space &amp; Residency</title>
     <meta name="description" content="An independent, artist-led arts space and residency on Kilifi Creek, Kenya.">
     <meta property="og:title" content="The Terrace Kilifi">
     <meta property="og:description" content="An artist-led independent arts space and residency on Kilifi Creek, Kenya.">
     <meta property="og:type" content="website">
-    ${mainCss ? `<link rel="stylesheet" href="assets/${mainCss}">` : ''}
+    ${mainCss ? `<link rel="stylesheet" href="${assetPrefix}${mainCss}">` : ''}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="root"></div>
-    <script type="module" src="assets/${mainJs}"></script>
+    <script type="module" src="${assetPrefix}${mainJs}"></script>
 </body>
 </html>`;
 
